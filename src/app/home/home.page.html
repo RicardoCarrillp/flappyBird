@@ -1,0 +1,78 @@
+<ion-content>
+  <div class="d-flex-center wrapper" (click)="jump()">
+    <div
+      class="background"
+      [ngStyle]="{
+      'background-size': containerWidth+'px '+ containerHeight+'px',
+      'width': containerWidth+'px',
+      'height': containerHeight+'px'
+    }"
+    >
+      <div *ngIf="!gameStarted" class="d-flex-center text">
+        <section>
+          <img class="bird-logo" src="/assets/images/bird.gif" alt="" />
+
+          <div *ngIf="!gameOver">
+            <div class="subtext">Ionic V7</div>
+            Flappy Bird
+          </div>
+
+          <div *ngIf="gameOver">
+            <div class="subtext">Juego finalizado</div>
+            Puntaje : {{score}}
+          </div>
+
+          <ion-button
+            (click)="startGame()"
+            color="warning"
+            mode="ios"
+            shape="round"
+          >
+            {{!gameOver ?'Jugar':'Volver a jugar'}}
+            <ion-icon slot="end" name="play"></ion-icon>
+          </ion-button>
+
+          <ion-button
+            (click)=" playMusic()"
+            color="success"
+            mode="ios"
+            shape="round"
+          >
+            <ion-icon
+              [name]="musicActive ? 'volume-mute-outline':'volume-high-outline'"
+            ></ion-icon>
+          </ion-button>
+        </section>
+      </div>
+
+      <section *ngIf="gameStarted">
+        <div class="score">
+          {{score}}
+        </div>
+        <app-obstacle
+          [height]="obstacleHeight"
+          [width]="obstacleWidth"
+          [top]="0"
+          [left]="obstaclePosition"
+          [rotation]="180"
+        >
+        </app-obstacle>
+
+        <app-bird
+          [width]="birdWidth"
+          [height]="birdHeight"
+          [top]="birdPosition"
+        ></app-bird>
+
+        <app-obstacle
+          [height]="containerHeight- obstacleGap - obstacleHeight"
+          [width]="obstacleWidth"
+          [top]="containerHeight - (obstacleHeight + (containerHeight - obstacleGap - obstacleHeight))"
+          [left]="obstaclePosition"
+          [rotation]="0"
+        >
+        </app-obstacle>
+      </section>
+    </div>
+  </div>
+</ion-content>

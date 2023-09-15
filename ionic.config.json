@@ -1,0 +1,7 @@
+{
+  "name": "flappyBird",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
