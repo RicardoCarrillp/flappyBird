@@ -41,8 +41,9 @@ export class HomePage implements OnInit {
    }
 
    startGame(){
-      this.gameStarted=true;
-      this.gameOver=false;
+      this.gameStarted = true;
+      this.gameOver = false;
+      this.score = 0;
   }
 
   jump(){
